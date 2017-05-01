@@ -17,6 +17,6 @@ module.exports = {
         name: 'alesha',
         age: 35
       }
-    ]
+    ];
   }
 };
