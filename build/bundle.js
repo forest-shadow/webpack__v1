@@ -44,20 +44,21 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const api = __webpack_require__( 1 ),
-	      $   = __webpack_require__( 2 );
+	'use strict';
 
-	let users = api.getUsers();
+	var api = __webpack_require__(1),
+	    $ = __webpack_require__(2),
+	    fxRates = __webpack_require__(3),
+	    welcomeUser = __webpack_require__(4);
 
-	const fxRates = __webpack_require__( 3 );
-	let welcomeUser = __webpack_require__(4);
+	var users = api.getUsers();
 
-	fxRates( 'USD', (data) => {
-	  console.log( data );
+	fxRates('USD', function (data) {
+	      return console.log(data);
 	});
 
-	$.each(users, (index, user)=> {
-	  $(document.body).append( index + "<p> name " + user.name + ' age ' + user.age + "</p>");
+	$.each(users, function (index, user) {
+	      return $(document.body).append('<p>' + index + ' - name ' + user.name + ' age ' + user.age + '</p>');
 	});
 
 	welcomeUser('Jones');
@@ -66,26 +67,23 @@
 /* 1 */
 /***/ function(module, exports) {
 
+	'use strict';
+
 	module.exports = {
-	  getUsers: function() {
-	    return [
-	      {
-	        name: 'alex',
-	        age: 28
-	      },
-	      {
-	        name: 'ann',
-	        age: 38
-	      },
-	      {
-	        name: 'aisha',
-	        age: 26
-	      },
-	      {
-	        name: 'alesha',
-	        age: 35
-	      }
-	    ]
+	  getUsers: function getUsers() {
+	    return [{
+	      name: 'alex',
+	      age: 28
+	    }, {
+	      name: 'ann',
+	      age: 38
+	    }, {
+	      name: 'aisha',
+	      age: 26
+	    }, {
+	      name: 'alesha',
+	      age: 35
+	    }];
 	  }
 	};
 
@@ -10352,12 +10350,14 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	let $ = __webpack_require__( 2 );
+	'use strict';
 
-	module.exports = function( baseCurrency, callback ) {
-	  $.getJSON( 'http://api.fixer.io/latest?base=' + baseCurrency, (fxRates) => {
-	    callback( fxRates );
-	  } );
+	var $ = __webpack_require__(2);
+
+	module.exports = function (baseCurrency, callback) {
+	  $.getJSON('http://api.fixer.io/latest?base=' + baseCurrency, function (fxRates) {
+	    callback(fxRates);
+	  });
 	};
 
 /***/ },
