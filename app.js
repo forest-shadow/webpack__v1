@@ -1,4 +1,8 @@
-var api = require( './api.js' );
+let api = require( './api.js' ),
+    $ = require( 'jquery' );
 
-alert('hello world');
-console.log( api.getUsers() );
+let users = api.getUsers();
+
+$.each(users, (index, user)=> {
+  $(document.body).append( index + "<p> name " + user.name + ' age ' + user.age + "</p>");
+});

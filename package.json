@@ -10,5 +10,8 @@
   },
   "scripts": {
     "webpack": "webpack ./app.js ./bundle.js"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
   }
 }
