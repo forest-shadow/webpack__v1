@@ -44,14 +44,20 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	let api = __webpack_require__( 1 ),
-	    $ = __webpack_require__( 2 );
+	const api = __webpack_require__( 1 ),
+	      $   = __webpack_require__( 2 );
 
 	let users = api.getUsers();
+
+	const fxRates = __webpack_require__( 3 );
+	fxRates( 'USD', (data) => {
+	  console.log( data );
+	});
 
 	$.each(users, (index, user)=> {
 	  $(document.body).append( index + "<p> name " + user.name + ' age ' + user.age + "</p>");
 	});
+
 
 /***/ },
 /* 1 */
@@ -10338,6 +10344,18 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	let $ = __webpack_require__( 2 );
+
+	module.exports = function( baseCurrency, callback ) {
+	  $.getJSON( 'http://api.fixer.io/latest?base=' + baseCurrency, (fxRates) => {
+	    callback( fxRates );
+	  } );
+	};
 
 /***/ }
 /******/ ]);
