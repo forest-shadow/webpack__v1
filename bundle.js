@@ -42,9 +42,35 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
+
+	var api = __webpack_require__( 1 );
 
 	alert('hello world');
+	console.log( api.getUsers() );
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  getUsers: function() {
+	    return [
+	      {
+	        name: 'alex',
+	        age: 28
+	      },
+	      {
+	        name: 'ann',
+	        age: 38
+	      },
+	      {
+	        name: 'aisha',
+	        age: 26
+	      }
+	    ]
+	  }
+	};
 
 /***/ }
 /******/ ]);
