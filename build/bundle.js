@@ -50,6 +50,8 @@
 	let users = api.getUsers();
 
 	const fxRates = __webpack_require__( 3 );
+	let welcomeUser = __webpack_require__(4);
+
 	fxRates( 'USD', (data) => {
 	  console.log( data );
 	});
@@ -58,6 +60,7 @@
 	  $(document.body).append( index + "<p> name " + user.name + ' age ' + user.age + "</p>");
 	});
 
+	welcomeUser('Jones');
 
 /***/ },
 /* 1 */
@@ -10356,6 +10359,19 @@
 	    callback( fxRates );
 	  } );
 	};
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	var welcomeUser;
+
+	welcomeUser = function(name) {
+	  return console.log("hello " + name + ". How are you ?");
+	};
+
+	module.exports = welcomeUser;
+
 
 /***/ }
 /******/ ]);

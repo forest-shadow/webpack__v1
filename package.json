@@ -6,6 +6,8 @@
   "author": "somebuddy",
   "license": "MIT",
   "devDependencies": {
+    "coffee-loader": "^0.7.3",
+    "coffee-script": "^1.12.5",
     "webpack": "1.14.0"
   },
   "scripts": {
