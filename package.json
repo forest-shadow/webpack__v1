@@ -9,7 +9,8 @@
     "webpack": "1.14.0"
   },
   "scripts": {
-    "webpack": "webpack ./app.js ./bundle.js"
+    "webpackfromterminal": "webpack ./app.js ./bundle.js",
+    "webpack": "webpack"
   },
   "dependencies": {
     "jquery": "^3.2.1"
