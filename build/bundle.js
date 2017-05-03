@@ -50,7 +50,8 @@
 	    $ = __webpack_require__(2),
 	    fxRates = __webpack_require__(3),
 	    welcomeUser = __webpack_require__(4),
-	    ReactApp = __webpack_require__(5);
+	    ReactApp = __webpack_require__(5),
+	    tsAppConf = __webpack_require__(189);
 
 	var users = api.getUsers();
 
@@ -60,7 +61,7 @@
 
 	// $.each(users, (index, user) => $(document.body).append( `<p>${index} - name ${user.name} age ${user.age}</p>`)
 	// );
-
+	console.log(tsAppConf);
 	welcomeUser('Jones');
 
 /***/ },
@@ -32262,6 +32263,56 @@
 	}(_react.Component);
 
 	exports.default = UsersComponent;
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var appConfig = __webpack_require__(190);
+	function print(prop) {
+	    console.log(prop);
+	}
+	;
+	module.exports = {
+	    print: print
+	};
+
+
+/***/ },
+/* 190 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"app": {
+			"name": "learning webpack with yaml",
+			"appOwner": "Antonio",
+			"leadDev": {
+				"name": "John Morris",
+				"email": "john.morris@company.com"
+			},
+			"appUsers": [
+				{
+					"company": "google",
+					"contact": "team@google.com"
+				},
+				{
+					"company": "amazon",
+					"contact": "team@amazon.com"
+				}
+			],
+			"supportTeam": {
+				"email": "support@company.com",
+				"phoneNumber": "0123456789"
+			},
+			"keyworks": [
+				"webpack",
+				"webapp",
+				"support",
+				"development"
+			]
+		}
+	};
 
 /***/ }
 /******/ ]);

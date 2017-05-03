@@ -22,6 +22,17 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.ya?ml$/,
+        loaders: ['json-loader', 'yaml-loader'],
+        //loader: 'json-loader!yaml-loader'
+        include: path.resolve( __dirname, 'config')
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        include: path.resolve( __dirname, 'ts')
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
