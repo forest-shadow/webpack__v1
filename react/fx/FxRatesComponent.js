@@ -32,12 +32,13 @@ export default class FxRatesComponent extends Component {
 
     for(const currency in rates) {
       const rate = rates[currency];
-      dailyRates.push( <li className="list-group-item" key={ currency }>{currency} - {rate}</li> );
+      dailyRates.push( <li className="list-group-item" key={ currency }>{currency} - <i className={ `fa fa-${baseCurrency.toLowerCase()}` } aria-hidden="true"></i>  {rate}</li> );
     }
 
     return(
       <div id="fxContainer">
-        <h2>Base { baseCurrency } Date { date }</h2>
+        <h3>Base - <i className={ `fa fa-${baseCurrency.toLowerCase()}` } aria-hidden="true"></i> { baseCurrency }</h3>
+        <h4>Date - <i className="fa fa-calendar" aria-hidden="true"></i> { date }</h4>
         <ul className="list-group">
           { dailyRates }
         </ul>
