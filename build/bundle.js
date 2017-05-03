@@ -51,7 +51,7 @@
 	    fxRates = __webpack_require__(3),
 	    welcomeUser = __webpack_require__(4),
 	    ReactApp = __webpack_require__(5),
-	    tsAppConf = __webpack_require__(189);
+	    tsAppConf = __webpack_require__(190);
 
 	var users = api.getUsers();
 
@@ -32145,6 +32145,10 @@
 
 	var _UsersComponent2 = _interopRequireDefault(_UsersComponent);
 
+	var _FxRatesComponent = __webpack_require__(189);
+
+	var _FxRatesComponent2 = _interopRequireDefault(_FxRatesComponent);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32169,11 +32173,25 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h1',
+	          'div',
 	          null,
-	          'Users'
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Users'
+	          ),
+	          _react2.default.createElement(_UsersComponent2.default, null)
 	        ),
-	        _react2.default.createElement(_UsersComponent2.default, null)
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Daily Fx Rates'
+	          ),
+	          _react2.default.createElement(_FxRatesComponent2.default, { baseCurrency: 'USD' })
+	        )
 	      );
 	    }
 	  }]);
@@ -32268,8 +32286,105 @@
 /* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _fx_rates = __webpack_require__(3);
+
+	var _fx_rates2 = _interopRequireDefault(_fx_rates);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FxRatesComponent = function (_Component) {
+	  _inherits(FxRatesComponent, _Component);
+
+	  function FxRatesComponent(props) {
+	    _classCallCheck(this, FxRatesComponent);
+
+	    var _this = _possibleConstructorReturn(this, (FxRatesComponent.__proto__ || Object.getPrototypeOf(FxRatesComponent)).call(this, props));
+
+	    _this.state = {
+	      fixerResponse: []
+	    };
+	    return _this;
+	  }
+
+	  _createClass(FxRatesComponent, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      (0, _fx_rates2.default)(this.props.baseCurrency, function (fixerResponse) {
+	        _this2.setState({
+	          fixerResponse: fixerResponse
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var dailyRates = [];
+	      var rates = this.state.fixerResponse.rates;
+	      var date = this.state.fixerResponse.date;
+	      var baseCurrency = this.props.baseCurrency;
+
+
+	      console.log(date);
+	      console.log(rates);
+
+	      for (var currency in rates) {
+	        var rate = rates[currency];
+	        dailyRates.push(_react2.default.createElement(
+	          'p',
+	          { key: currency },
+	          currency,
+	          ' - ',
+	          rate
+	        ));
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Base ',
+	          baseCurrency,
+	          ' Date ',
+	          date
+	        ),
+	        dailyRates
+	      );
+	    }
+	  }]);
+
+	  return FxRatesComponent;
+	}(_react.Component);
+
+	exports.default = FxRatesComponent;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
-	var appConfig = __webpack_require__(190);
+	var appConfig = __webpack_require__(191);
 	function print(prop) {
 	    console.log(prop);
 	}
@@ -32280,7 +32395,7 @@
 
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports) {
 
 	module.exports = {
