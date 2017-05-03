@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import api from '../api';
+import api from '../../api';
+require('./style.css');
 
 export default class UsersComponent extends Component {
 
@@ -24,7 +25,7 @@ export default class UsersComponent extends Component {
       return <p key={ index }>{ index } - {name} is { age } </p>;
     });
     return (
-      <div>
+      <div id="usersContainer">
         { users }
       </div>
     );

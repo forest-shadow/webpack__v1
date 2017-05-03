@@ -2,19 +2,19 @@ module.exports = {
   getUsers: function() {
     return [
       {
-        name: 'alex',
+        name: 'Alex',
         age: 28
       },
       {
-        name: 'ann',
+        name: 'Ann',
         age: 38
       },
       {
-        name: 'aisha',
+        name: 'Aisha',
         age: 26
       },
       {
-        name: 'alesha',
+        name: 'Alesha',
         age: 35
       }
     ];

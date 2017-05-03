@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import getFxRates from '../fx_rates.js';
+import getFxRates from '../../fx_rates.js';
+require('./style.css');
 
 export default class FxRatesComponent extends Component {
 
@@ -35,7 +36,7 @@ export default class FxRatesComponent extends Component {
     }
 
     return(
-      <div>
+      <div id="fxContainer">
         <h2>Base { baseCurrency } Date { date }</h2>
         { dailyRates }
       </div>

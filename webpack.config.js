@@ -39,7 +39,17 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loaders: ['style-loader', 'css-loader']
       }
     ]
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'build'),
+    inline: true,
+    port: 3000
   }
 };
