@@ -1,3 +1,7 @@
+//style
+require('./styles/main.scss');
+
+// scripts
 const api         = require( './api.js' ),
       $           = require( 'jquery' ),
       fxRates     = require( './fx_rates.js' ),
