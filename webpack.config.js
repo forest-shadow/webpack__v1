@@ -1,10 +1,13 @@
 let path = require( 'path' );
 
 module.exports = {
-  entry: __dirname,
+  entry: {
+    main: path.resolve(__dirname, 'main.js'),
+    tweets: path.resolve(__dirname, 'tweetsEntryPoint.js')
+  },
   output: {
     path: path.join( __dirname, 'build' ),
-    filename: "./bundle.js"
+    filename: "[name].bundle.js"
   },
   module: {
     preLoaders: [
