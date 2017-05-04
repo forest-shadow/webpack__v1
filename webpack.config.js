@@ -1,7 +1,7 @@
 let path = require( 'path' );
 
 module.exports = {
-  entry: "./app.js",
+  entry: __dirname,
   output: {
     path: path.join( __dirname, 'build' ),
     filename: "./bundle.js"
@@ -55,10 +55,13 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.coffee', '', '.ts'],
+    extensions: ['.js', '.coffee', '', '.ts', '.css', '.scss'],
     alias: {
       fx_rates$: path.resolve(__dirname, 'fx_rates.js'),
-      Api: path.resolve(__dirname, 'apis')
+      Api: path.resolve(__dirname, 'apis'),
+      welcomeUser$: path.resolve(__dirname, 'welcomeUser.coffee'),
+      typescript: path.resolve(__dirname, 'ts'),
+      styles: path.resolve(__dirname, 'styles')
     }
   },
   devServer: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getFxRates from 'fx_rates';
-require('./style.css');
+require('./style');
 
 export default class FxRatesComponent extends Component {
 
