@@ -1,14 +1,13 @@
 //style
-require('styles/main');
+require('./styles/main');
 
 // scripts
 const api         = require( 'Api/users' ),
       $           = require( 'jquery' ),
       fxRates     = require( 'fx_rates' ),
-      welcomeUser = require('welcomeUser'),
-      ReactApp    = require( './react/ReactApp');
-
-require( 'typescript/appConfig');
+      welcomeUser = require('welcomeUser' );
+require( 'reactApp' );
+require( 'typescript/appConfig' );
 
 let users = api.getUsers();
 

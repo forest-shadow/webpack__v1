@@ -1,4 +1,4 @@
-const appConfig = require( '../config/appConfig.yaml' );
+const appConfig = require( 'appConfig' );
 
 function print( prop: string ) {
     console.log( prop );

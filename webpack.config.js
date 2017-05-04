@@ -2,8 +2,8 @@ let path = require( 'path' );
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, 'main.js'),
-    tweets: path.resolve(__dirname, 'tweetsEntryPoint.js')
+    main: path.resolve(__dirname, 'app', 'entryPoints', 'main'),
+    tweets: path.resolve(__dirname, 'app', 'entryPoints', 'tweets')
   },
   output: {
     path: path.join( __dirname, 'build' ),
@@ -28,12 +28,12 @@ module.exports = {
         test: /\.ya?ml$/,
         loaders: ['json-loader', 'yaml-loader'],
         //loader: 'json-loader!yaml-loader'
-        include: path.resolve( __dirname, 'config')
+        include: path.resolve( __dirname, 'app', 'config')
       },
       {
         test: /\.ts$/,
         loader: 'ts-loader',
-        include: path.resolve( __dirname, 'ts')
+        include: path.resolve( __dirname, 'app', 'ts')
       },
       {
         test: /\.js$/,
@@ -60,11 +60,12 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.coffee', '', '.ts', '.css', '.scss'],
     alias: {
-      fx_rates$: path.resolve(__dirname, 'fx_rates.js'),
-      Api: path.resolve(__dirname, 'apis'),
-      welcomeUser$: path.resolve(__dirname, 'welcomeUser.coffee'),
-      typescript: path.resolve(__dirname, 'ts'),
-      styles: path.resolve(__dirname, 'styles')
+      fx_rates$: path.resolve(__dirname, 'app', 'fx_rates.js'),
+      Api: path.resolve(__dirname, 'app', 'apis'),
+      welcomeUser$: path.resolve(__dirname, 'app', 'welcomeUser.coffee'),
+      typescript: path.resolve(__dirname, 'app', 'ts'),
+      reactApp$: path.resolve(__dirname, 'app', 'react'),
+      appConfig$: path.resolve(__dirname, 'app', 'config', 'appConfig.yaml' )
     }
   },
   devServer: {
