@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import api from '../../api';
+import api from 'Api/users';
 require('./style.css');
 
 export default class UsersComponent extends Component {

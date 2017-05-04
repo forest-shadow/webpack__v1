@@ -54,6 +54,13 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.coffee', '', '.ts'],
+    alias: {
+      fx_rates$: path.resolve(__dirname, 'fx_rates.js'),
+      Api: path.resolve(__dirname, 'apis')
+    }
+  },
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     inline: true,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import getFxRates from '../../fx_rates.js';
+import getFxRates from 'fx_rates';
 require('./style.css');
 
 export default class FxRatesComponent extends Component {
@@ -26,9 +26,6 @@ export default class FxRatesComponent extends Component {
     const { fixerResponse: { date } } = this.state;
 
     const { baseCurrency } = this.props;
-
-    console.log(date);
-    console.log(rates);
 
     for(const currency in rates) {
       const rate = rates[currency];
