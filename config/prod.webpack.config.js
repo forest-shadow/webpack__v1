@@ -1,8 +1,9 @@
-let path                = require( 'path' ),
+let path              = require( 'path' ),
   ExtractTextPlugin   = require( 'extract-text-webpack-plugin' ),
   webpack             = require( 'webpack' ),
   htmlWebpackPlugin   = require( 'html-webpack-plugin' ),
-  cleanWebpackPlugin  = require( 'clean-webpack-plugin');
+  cleanWebpackPlugin  = require( 'clean-webpack-plugin'),
+  optimizeCssAssetsWebpackPlugin = require( 'optimize-css-assets-webpack-plugin');
 
 module.exports = function(env) {
   return {
@@ -109,7 +110,10 @@ module.exports = function(env) {
       new cleanWebpackPlugin( ['build-prod'], {
         root: path.resolve( __dirname, '..' ),
         verbose: true
-      } )
+      } ),
+      new optimizeCssAssetsWebpackPlugin({
+        cssProcessorOptions: { discardComments: { removeAll: true } }
+      })
     ],
     devServer: {
       contentBase: path.resolve(__dirname, '..', 'build-prod'),
