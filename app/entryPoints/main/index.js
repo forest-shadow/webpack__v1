@@ -5,7 +5,7 @@ require('./styles/main');
 const api         = require( 'Api/users' ),
       $           = require( 'jquery' ),
       fxRates     = require( 'fx_rates' ),
-      welcomeUser = require('welcomeUser' );
+      welcomeUser = require( 'welcomeUser' );
 require( 'reactApp' );
 require( 'typescript/appConfig' );
 

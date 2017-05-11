@@ -1,16 +1,16 @@
 let path = require( 'path' ),
-    //ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
+    ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
     webpack = require( 'webpack' );
 
 module.exports = {
   entry: {
     main: path.resolve(__dirname, 'app', 'entryPoints', 'main'),
     tweets: path.resolve(__dirname, 'app', 'entryPoints', 'tweets'),
-    vendor: ['jquery', 'bootstrap', 'react', 'react-dom']
+    vendor: ['jquery', 'bootstrap', 'react', 'react-dom', 'angular']
   },
   output: {
     path: path.join( __dirname, 'build' ),
-    filename: "[name].bundle.js"
+    filename: "[name].[hash].bundle.js"
   },
   module: {
     preLoaders: [
@@ -52,16 +52,22 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+        //loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
+        //loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         loader: 'url-loader?limit=100000'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.coffee', '', '.ts', '.css', '.scss'],
+    extensions: ['.js', '.coffee', '', '.ts', '.css', '.scss', '.json'],
     alias: {
       fx_rates$: path.resolve(__dirname, 'app', 'fx_rates.js'),
       Api: path.resolve(__dirname, 'app', 'apis'),
@@ -72,10 +78,10 @@ module.exports = {
     }
   },
   plugins: [
-    //new ExtractTextPlugin( 'main.css' ),
+    new ExtractTextPlugin( '[name].[].css' ),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.bundle.js',
+      filename: 'vendor.[hash].bundle.js',
       chunks: ['vendor']
     }),
     new webpack.ProvidePlugin({
