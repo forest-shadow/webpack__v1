@@ -34,7 +34,9 @@
   "scripts": {
     "webpackfromterminal": "webpack ./app.js ./bundle.js",
     "webpack": "webpack",
-    "webpack-dev-server": "webpack-dev-server"
+    "webpack-dev-server": "webpack-dev-server",
+    "webpack:build-dev": "webpack --env=dev",
+    "webpack:build-prod": "webpack --env=prod"
   },
   "dependencies": {
     "angular": "^1.6.1",
