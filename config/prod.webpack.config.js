@@ -90,18 +90,24 @@ module.exports = function(env) {
         jQuery: 'jquery'
       }),
       new htmlWebpackPlugin({
-        template: path.resolve( __dirname, 'app', 'entryPoints', 'main', 'index.html' ),
+        template: path.resolve( __dirname, '..', 'app', 'entryPoints', 'main', 'index.html' ),
         hash: true,
-        chunks: [ 'vendor', 'main' ]
+        chunks: [ 'vendor', 'main' ],
+        minify: {
+          collapseWhitespace: true
+        }
       }),
       new htmlWebpackPlugin({
         template: path.resolve( __dirname, '..', 'app', 'entryPoints', 'tweets', 'tweets.html' ),
         hash: true,
         chunks: [ 'vendor', 'tweets' ],
-        filename: 'tweets.html'
+        filename: 'tweets.html',
+        minify: {
+          collapseWhitespace: true
+        }
       }),
       new cleanWebpackPlugin( ['build-prod'], {
-        root: path.resolve( __dirname ),
+        root: path.resolve( __dirname, '..' ),
         verbose: true
       } )
     ],
