@@ -1,7 +1,8 @@
-let path = require( 'path' ),
-    ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
-    webpack = require( 'webpack' ),
-    htmlWebpackPlugin = require( 'html-webpack-plugin' );
+let path                = require( 'path' ),
+    ExtractTextPlugin   = require( 'extract-text-webpack-plugin' ),
+    webpack             = require( 'webpack' ),
+    htmlWebpackPlugin   = require( 'html-webpack-plugin' ),
+    cleanWebpackPlugin  = require( 'clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -97,7 +98,11 @@ module.exports = {
       hash: true,
       chunks: [ 'vendor', 'tweets' ],
       filename: 'tweets.html'
-    })
+    }),
+    new cleanWebpackPlugin( ['build'], {
+      root: path.resolve( __dirname ),
+      verbose: true
+    } )
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
