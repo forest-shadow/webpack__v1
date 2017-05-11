@@ -13,7 +13,7 @@ module.exports = function(env) {
     },
     output: {
       path: path.join( __dirname, '..', 'build-dev' ),
-      filename: "[name].[chunkhash].bundle.js"
+      filename: "[name].bundle.js"
     },
     module: {
       rules: [
@@ -78,11 +78,11 @@ module.exports = function(env) {
     },
     plugins: [
       new ExtractTextPlugin( {
-        filename: '[name].[chunkhash].css'
+        filename: '[name].css'
       } ),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        filename: 'vendor.[chunkhash].bundle.js',
+        filename: 'vendor.bundle.js',
         chunks: ['vendor']
       }),
       new webpack.ProvidePlugin({
@@ -90,7 +90,7 @@ module.exports = function(env) {
         jQuery: 'jquery'
       }),
       new htmlWebpackPlugin({
-        template: path.resolve( __dirname, 'app', 'entryPoints', 'main', 'index.html' ),
+        template: path.resolve( __dirname, '..', 'app', 'entryPoints', 'main', 'index.html' ),
         hash: true,
         chunks: [ 'vendor', 'main' ]
       }),
@@ -101,7 +101,7 @@ module.exports = function(env) {
         filename: 'tweets.html'
       }),
       new cleanWebpackPlugin( ['build-dev'], {
-        root: path.resolve( __dirname ),
+        root: path.resolve( __dirname, '..' ),
         verbose: true
       } )
     ],
