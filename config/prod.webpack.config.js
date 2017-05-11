@@ -113,6 +113,11 @@ module.exports = function(env) {
       } ),
       new optimizeCssAssetsWebpackPlugin({
         cssProcessorOptions: { discardComments: { removeAll: true } }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false
+        }
       })
     ],
     devServer: {

@@ -37,6 +37,7 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "webpack:build-dev": "webpack --env=dev",
+    "webpack:serve-dev": "webpack-dev-server --env=dev",
     "webpack:build-prod": "webpack --env=prod"
   },
   "dependencies": {
