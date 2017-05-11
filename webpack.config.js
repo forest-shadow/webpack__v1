@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: path.join( __dirname, 'build' ),
-    filename: "[name].[hash].bundle.js"
+    filename: "[name].[chunkhash].bundle.js"
   },
   module: {
     preLoaders: [
@@ -78,10 +78,10 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin( '[name].[].css' ),
+    new ExtractTextPlugin( '[name].[chunkhash].css' ),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.[hash].bundle.js',
+      filename: 'vendor.[chunkhash].bundle.js',
       chunks: ['vendor']
     }),
     new webpack.ProvidePlugin({
