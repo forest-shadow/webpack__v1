@@ -13,6 +13,8 @@ let users = api.getUsers();
 
 fxRates( 'USD', data => console.log( data ) );
 
+console.log(process.env.NODE_ENV);
+
 // $.each(users, (index, user) => $(document.body).append( `<p>${index} - name ${user.name} age ${user.age}</p>`)
 // );
 welcomeUser('Jones');

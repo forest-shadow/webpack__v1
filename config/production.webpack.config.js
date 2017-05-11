@@ -57,7 +57,7 @@ module.exports = function(env) {
           test: /\.scss$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: 'css-loader!sass-loader'
+            use: "css-loader?sourceMap!sass-loader?sourceMap"
           })
         },
         {
@@ -118,7 +118,8 @@ module.exports = function(env) {
         output: {
           comments: false
         },
-        mangle: false
+        mangle: false,
+        sourceMap: true
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(env),
@@ -129,6 +130,7 @@ module.exports = function(env) {
       contentBase: path.resolve(__dirname, '..', 'build-prod'),
       inline: true,
       port: 3000
-    }
+    },
+    devtool: 'source-map'
   }
 };

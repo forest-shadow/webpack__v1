@@ -113,6 +113,7 @@ module.exports = function(env) {
       contentBase: path.resolve(__dirname, '..', 'build-dev'),
       inline: true,
       port: 3000
-    }
+    },
+    devtool: 'eval-source-map'
   }
 };
