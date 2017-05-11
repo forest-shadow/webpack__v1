@@ -1,6 +1,7 @@
 let path = require( 'path' ),
     ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
-    webpack = require( 'webpack' );
+    webpack = require( 'webpack' ),
+    htmlWebpackPlugin = require( 'html-webpack-plugin' );
 
 module.exports = {
   entry: {
@@ -87,6 +88,17 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
+    }),
+    new htmlWebpackPlugin({
+      template: path.resolve( __dirname, 'app', 'entryPoints', 'main', 'index.html' ),
+      hash: true,
+      chunks: [ 'vendor', 'main' ]
+    }),
+    new htmlWebpackPlugin({
+      template: path.resolve( __dirname, 'app', 'entryPoints', 'tweets', 'tweets.html' ),
+      hash: true,
+      chunks: [ 'vendor', 'tweets' ],
+      filename: 'tweets.html'
     })
   ],
   devServer: {
