@@ -14,61 +14,57 @@ module.exports = {
     filename: "[name].[chunkhash].bundle.js"
   },
   module: {
-    preLoaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'eslint-loader',
+        enforce: 'pre',
         exclude: /node_modules/,
         query: require( path.resolve( __dirname, 'eslint.config.js' ) )
-      }
-    ],
-    loaders: [
+      },
       {
         test: /\.coffee$/,
-        loader: 'coffee-loader',
+        use: 'coffee-loader',
         exclude: /node_modules/
       },
       {
         test: /\.ya?ml$/,
-        loaders: ['json-loader', 'yaml-loader'],
+        use: ['json-loader', 'yaml-loader'],
         //loader: 'json-loader!yaml-loader'
         include: path.resolve( __dirname, 'app', 'config')
       },
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
+        use: 'ts-loader',
         include: path.resolve( __dirname, 'app', 'ts')
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
+        options: {
+          presets: [ 'react', ["es2015", { "modules": false }] ]
         }
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
-        //loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
-        //loaders: ['style-loader', 'css-loader', 'sass-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
+        })
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-        loader: 'url-loader?limit=100000'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        use: 'url-loader?limit=100000'
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.coffee', '', '.ts', '.css', '.scss', '.json'],
+    extensions: ['.js', '.coffee', '.ts', '.css', '.scss', '.json'],
     alias: {
       fx_rates$: path.resolve(__dirname, 'app', 'fx_rates.js'),
       Api: path.resolve(__dirname, 'app', 'apis'),
@@ -79,7 +75,9 @@ module.exports = {
     }
   },
   plugins: [
-    new ExtractTextPlugin( '[name].[chunkhash].css' ),
+    new ExtractTextPlugin( {
+      filename: '[name].[chunkhash].css'
+    } ),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.[chunkhash].bundle.js',
