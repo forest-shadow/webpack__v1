@@ -1,8 +1,9 @@
-let path                = require( 'path' ),
-    ExtractTextPlugin   = require( 'extract-text-webpack-plugin' ),
-    webpack             = require( 'webpack' ),
-    htmlWebpackPlugin   = require( 'html-webpack-plugin' ),
-    cleanWebpackPlugin  = require( 'clean-webpack-plugin');
+let path              = require( 'path' ),
+  ExtractTextPlugin   = require( 'extract-text-webpack-plugin' ),
+  webpack             = require( 'webpack' ),
+  htmlWebpackPlugin   = require( 'html-webpack-plugin' ),
+  cleanWebpackPlugin  = require( 'clean-webpack-plugin'),
+  optimizeCssAssetsWebpackPlugin = require( 'optimize-css-assets-webpack-plugin');
 
 module.exports = function(env) {
   return {
@@ -12,8 +13,8 @@ module.exports = function(env) {
       vendor: ['jquery', 'bootstrap', 'react', 'react-dom', 'angular']
     },
     output: {
-      path: path.join( __dirname, '..', 'build-dev' ),
-      filename: "[name].bundle.js"
+      path: path.join( __dirname, '..', 'build-prod' ),
+      filename: "[name].[chunkhash].bundle.js"
     },
     module: {
       rules: [
@@ -78,11 +79,11 @@ module.exports = function(env) {
     },
     plugins: [
       new ExtractTextPlugin( {
-        filename: '[name].css'
+        filename: '[name].[chunkhash].css'
       } ),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
-        filename: 'vendor.bundle.js',
+        filename: 'vendor.[chunkhash].bundle.js',
         chunks: ['vendor']
       }),
       new webpack.ProvidePlugin({
@@ -92,21 +93,40 @@ module.exports = function(env) {
       new htmlWebpackPlugin({
         template: path.resolve( __dirname, '..', 'app', 'entryPoints', 'main', 'index.html' ),
         hash: true,
-        chunks: [ 'vendor', 'main' ]
+        chunks: [ 'vendor', 'main' ],
+        minify: {
+          collapseWhitespace: true
+        }
       }),
       new htmlWebpackPlugin({
         template: path.resolve( __dirname, '..', 'app', 'entryPoints', 'tweets', 'tweets.html' ),
         hash: true,
         chunks: [ 'vendor', 'tweets' ],
-        filename: 'tweets.html'
+        filename: 'tweets.html',
+        minify: {
+          collapseWhitespace: true
+        }
       }),
-      new cleanWebpackPlugin( ['build-dev'], {
+      new cleanWebpackPlugin( ['build-prod'], {
         root: path.resolve( __dirname, '..' ),
         verbose: true
-      } )
+      } ),
+      new optimizeCssAssetsWebpackPlugin({
+        cssProcessorOptions: { discardComments: { removeAll: true } }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false
+        },
+        mangle: false
+      }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(env),
+        'env': JSON.stringify(env)
+      })
     ],
     devServer: {
-      contentBase: path.resolve(__dirname, '..', 'build-dev'),
+      contentBase: path.resolve(__dirname, '..', 'build-prod'),
       inline: true,
       port: 3000
     }
