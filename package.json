@@ -26,6 +26,7 @@
     "optimize-css-assets-webpack-plugin": "^1.3.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",
+    "surge": "^0.18.0",
     "ts-loader": "1.3.3",
     "typescript": "^2.3.2",
     "url-loader": "^0.5.8",
@@ -42,7 +43,10 @@
     "webpack:build-production": "webpack --env=production",
     "webpack:serve-production": "webpack-dev-server --env=production",
     "serve-local:production": "cd build-prod; http-server -p 8000 -o",
-    "serve-local:development": "cd build-dev; http-server -p 7000 -o"
+    "serve-local:development": "cd build-dev; http-server -p 7000 -o",
+    "surge-deploy:production": "yarn run webpack:build-production; surge -p build-prod -d prod-webpack-course.surge.sh",
+    "surge-deploy:development": "yarn run webpack:build-development; surge -p build-dev -d dev-webpack-course.surge.sh",
+    "surge-deploy:all": "yarn run surge-deploy:production; yarn run surge-deploy:development"
   },
   "dependencies": {
     "angular": "^1.6.1",
